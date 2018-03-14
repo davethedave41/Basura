@@ -1,0 +1,13 @@
+int barHeightH=5;  //horizontal
+int barWidthH=350;
+int barHeightV=-300;    //vertical
+int barWidthV=5;
+int barX=100;  //useful,funny,cool bars
+int barY=900;
+int barGraphWidth=85;
+int oneRating=-1*(barHeightV/5);
+final int TEST=0;
+int starBoxX=1000;
+int starBoxW=150;
+int starBoxH=50;
+int starBoxY=900;
