@@ -51,7 +51,7 @@ class Review {
   }
   String toString() {
     reviewLabel = "UserID: " +userID + " Username: " + userName + "\nBusinessID: " + businessID + " Business Name: " + businessName
-      + "\nStars: " + stars + "\nDate: " + date + "\n" + reviewToString(); 
+      + "\nDate: " + date + "\n" + reviewToString(); 
     return reviewLabel;
   }
   String reviewToString() {
@@ -63,9 +63,11 @@ class Review {
     return reviewToString;
   }
   void draw(float y) {
-    fill(0);
+    if (y < 150) {
+      fill(56, 90, 94);
+    } else fill(0);
     textFont = loadFont("SansSerif-14.vlw");
-    text(toString(), 500, y);
+    text(toString(), REVIEW_X_POS, y);
    
     //  text(reviewToString(), 10, 200);
   }
