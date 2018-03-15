@@ -1,4 +1,6 @@
 Table reviewTable;
+userInput userText;
+background backgroundTemplate;
 BarChartIndividual barChart;
 PImage starImage;
 StarCounter starCounter;
@@ -8,13 +10,14 @@ Review testReview, nextReview;
 ArrayList<Review> reviewsArray;
 void setup () {
   starImage=loadImage("star.gif");
-  size(1920, 1080);
+  size(1800, 1080);
   reviewTable = loadTable("reviews_cleaned.csv", "header");
   vs1 = new VScrollbar(SCREEN_X, 0, SCROLLWIDTH, SCROLLHEIGHT, 3*5+1);
   reviewsArray = new ArrayList<Review>();
   reviews = loadStrings("reviews_cleaned.csv");
-  
- 
+  userText = new userInput();
+  backgroundTemplate = new background();
+
   println("there are " + reviews.length + " lines");
   for (int i = 1; i < reviews.length; i++) {
     String reviewLine = reviews[i];
@@ -45,16 +48,17 @@ void setup () {
   //println(nextReview.getReview());
 }
 void draw() {
-  background(0);
-  barChart.draw();
-  starCounter.draw();
   float leftPos = vs1.getPos();
-  for (int i = 0; i < 10; i++) {
-    nextReview = (Review) reviewsArray.get(i);
-    nextReview.draw(leftPos + 200*i);
+  backgroundTemplate.draw();
+  userText.draw();
+  userText.keyPressed();
+  barChart.draw(-leftPos + 800);
+  starCounter.draw(-leftPos + 800);
+  nextReview = (Review) reviewsArray.get(1);
+  nextReview.draw(-leftPos + 200);
     // testReview.draw(leftPos);
     // nextReview.draw(leftPos + 200);
-  }
+  
   vs1.update();
   vs1.display();
 }

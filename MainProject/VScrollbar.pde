@@ -59,11 +59,7 @@ class VScrollbar
   void display() {
     fill(255);
     rect(xpos, ypos, swidth, sheight);
-    if (over || locked) {
-      fill(103, 94, 191);
-    } else {
-      fill(255);
-    }
+    fill(103, 94, 191);
     rect(xpos, spos, swidth, swidth);
   }
 
