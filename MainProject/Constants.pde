@@ -16,3 +16,5 @@ int starBoxW=150;
 int starBoxH=50;
 int starBoxY=900;
 final int REVIEW_X_POS = 900;
+final int TEXT_X = 20;
+final int TEXT_Y = 30;

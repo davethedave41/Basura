@@ -67,7 +67,11 @@ class Review {
       fill(56, 90, 94);
     } else fill(0);
     textFont = loadFont("SansSerif-14.vlw");
-    text(toString(), REVIEW_X_POS, y);
+    //text(toString(), REVIEW_X_POS, y);
+     text("User ID : " + userID + "\nUsername : " + userName + "\nBusiness ID : " + businessID + 
+        "\nBusiness Name : " + businessName + "\nStars : " + stars + "\nDate : " + date 
+        + "\nReview : \n" + review + "\nUseful : " + useful
+        + "\nFunny : " + funny + "\nCool : " + cool, TEXT_X, TEXT_Y);
    
     //  text(reviewToString(), 10, 200);
   }

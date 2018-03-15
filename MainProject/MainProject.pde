@@ -8,6 +8,8 @@ VScrollbar vs1;
 String[] reviews;
 Review testReview, nextReview;
 ArrayList<Review> reviewsArray;
+int reviewNumDisplayed =0;
+float y = 100;
 void setup () {
   starImage=loadImage("star.gif");
   size(1800, 1080);
@@ -54,11 +56,15 @@ void draw() {
   userText.keyPressed();
   barChart.draw(-leftPos + 800);
   starCounter.draw(-leftPos + 800);
-  nextReview = (Review) reviewsArray.get(1);
-  nextReview.draw(-leftPos + 200);
+// nextReview = (Review) reviewsArray.get(1);
+ // nextReview.draw(-leftPos + 200);
     // testReview.draw(leftPos);
     // nextReview.draw(leftPos + 200);
-  
+  Review review = reviewsArray.get(reviewNumDisplayed);
+  review.draw(leftPos);
   vs1.update();
   vs1.display();
+}
+void mousePressed(){
+  reviewNumDisplayed++;
 }
