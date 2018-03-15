@@ -1,9 +1,10 @@
 PFont textFont;
+int i;
 String reviewLabel;
 class Review {
   String userID, userName, businessID, businessName, stars, date, review, useful, funny, cool;
   Review(String userID, String userName, String businessID, String businessName, String stars, 
-    String date, String review, String useful, String funny, String cool) {
+    String date, String review, String useful, String funny, String cool, int i) {
 
     this.userID = userID;
     this.userName = userName;
@@ -15,6 +16,7 @@ class Review {
     this.useful = useful;
     this.funny = funny;
     this.cool = cool;
+    this.i = i;
   }
   String getUserID () {
     return userID;
