@@ -1,6 +1,6 @@
 final int SCROLLHEIGHT = 1080;
 final int SCROLLWIDTH = 40;
-final int SCREEN_X = 1920;
+final int SCREEN_X = 1800;
 final int SCREEN_Y = 1080;
 final int barHeightH=5;  //horizontal
 final int barWidthH=350;
