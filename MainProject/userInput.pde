@@ -11,11 +11,11 @@ String b = "Search ";
   void draw() {
     //textAlign(CENTER);
     fill(255);
-    rect(800, 20, 150, 50);
+    rect(1400, 20, 300, 50);
     textSize(15);
     textAlign(CENTER);
     fill(24);
-    text(letters, 810, 50); //130, 40);
+    text(letters, 1500, 50); //130, 40);
     //String b = "Search ";
     //textSize(15);
     //fill(24);
@@ -27,7 +27,7 @@ String b = "Search ";
     textSize(15);
     fill(24);
     textAlign(CENTER);
-    text(b, 850, 50);
+    text(b, 1500, 50);
     if ((key == ENTER) || (key == RETURN) || (key == BACKSPACE)) {
       letters = letters.toLowerCase();
       println(letters);  // Print to console to see input

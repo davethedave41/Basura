@@ -32,7 +32,7 @@ void setup () {
     String useful = reviewSplit[7];
     String funny = reviewSplit[8];
     String cool = reviewSplit [9];
-    Review newReview = new Review(userID, userName, businessID, businessName, stars, date, review, useful, funny, cool);
+    Review newReview = new Review(userID, userName, businessID, businessName, stars, date, review, useful, funny, cool, i);
     reviewsArray.add(newReview);
   }
   testReview = (Review) reviewsArray.get(1);

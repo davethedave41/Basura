@@ -3,6 +3,7 @@ int i;
 String reviewLabel;
 class Review {
   String userID, userName, businessID, businessName, stars, date, review, useful, funny, cool;
+  int i;
   Review(String userID, String userName, String businessID, String businessName, String stars, 
     String date, String review, String useful, String funny, String cool, int i) {
 
