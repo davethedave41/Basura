@@ -1,0 +1,17 @@
+final int SCROLLHEIGHT = 1080;
+final int SCROLLWIDTH = 40;
+final int SCREEN_X = 1920;
+final int SCREEN_Y = 1080;
+final int barHeightH=5;  //horizontal
+final int barWidthH=350;
+final int barHeightV=-300;    //vertical
+final int barWidthV=5;
+final int barX=100;  //useful,funny,cool bars
+final int barY=900;
+final int barGraphWidth=85;
+final int oneRating=-1*(barHeightV/5);
+final int TEST=0;
+final int starBoxX=1000;
+final int starBoxW=150;
+final int starBoxH=50;
+final int starBoxY=900;
