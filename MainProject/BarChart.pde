@@ -1,4 +1,6 @@
+Review review;
 class BarChartIndividual{ 
+  Review review;
   PFont stdFont;
   int x1=280;      //useful
   int y1=1640;
@@ -12,7 +14,7 @@ class BarChartIndividual{
 //  int cR=4;
  // int fR=0;
  String useful="Useful", funny="Funny", cool="Cool", stars="Stars";
-  Review review;
+
 
   BarChartIndividual(Review review) {
     this.review=review;
@@ -43,73 +45,73 @@ class BarChartIndividual{
     fill(0,0,255);
     text(cool,barX+barWidthV+2*barGraphWidth+barGraphWidth/3-5,y+20);
     switch(review.getUseful()){
-      case "1":
+      case 1:
       fill(255,0,0);
-     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*1));
+      rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
      break;
-     case "2":
+     case 2:
      fill(255,0,0);
-     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*2));
+     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
      break;
-     case "3":
+     case 3:
      fill(255,0,0);
-     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*3));
+     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
      break;
-     case "4":
+     case 4:
      fill(255,0,0);
-     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*4));
+     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
      break;
-     case "5":
+     case 5:
      fill(255,0,0);
-      rect(barX+barWidthV, y-1, barGraphWidth,-1*(oneRating*5));
+     rect(barX+barWidthV, y-1, barGraphWidth,-1*(oneRating*review.getUseful()));
      break;
      default:
      break;
     }
     switch(review.getFunny()){
-    case "1":
+    case 1:
      fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*1));
+    rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getFunny()));
     break;
-    case "2":
+    case 2:
      fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*2));
+    rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getFunny()));
     break;
-    case "3":
+    case 3:
      fill(0,255,0);
-     rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*3));
+     rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getFunny()));
     break;
-    case "4":
+    case 4:
      fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,barWidthV,barGraphWidth,-1*(oneRating*4));
+    rect(barX+barWidthV+barGraphWidth,barWidthV,barGraphWidth,-1*(oneRating*review.getFunny()));
     break;
-    case "5":
+    case 5:
      fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,barWidthV,barGraphWidth,-1*(oneRating*5));
+    rect(barX+barWidthV+barGraphWidth,barWidthV,barGraphWidth,-1*(oneRating*review.getFunny()));
     break;
     default:
     break;
     }
     switch(review.getCool()){
-    case "1":
+    case 1:
     fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*1));
+    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
     break;
-    case "2":
+    case 2:
     fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*2));
+    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
     break;
-    case "3":
+    case 3:
     fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*3));
+    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
     break;
-    case "4":
+    case 4:
     fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*4));
+    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
     break;
-    case "5":
+    case 5:
     fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*5));
+    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
     break;
     default:
     break;
