@@ -15,14 +15,14 @@ PFont widgetFont;
 float y = 100;
 void setup () {
   starImage=loadImage("star.gif");
-  size(1280, 800);
+  size(1800, 1000);
  // reviewTable = loadTable("reviews_cleaned.csv", "header");
   // vs1 = new VScrollbar(SCREEN_X, 0, SCROLLWIDTH, SCROLLHEIGHT, 3*5+1);
   widgetFont = loadFont("SansSerif-14.vlw"); 
   textFont(widgetFont);
-  widgetNext =new Widget(750, 600, 100, 40, 
-    "Next", color(255, 0, 0), widgetFont, EVENT_BUTTON1);
-  widgetPrev = new Widget(250, 600, 100, 40, "Previous", color(0, 0, 255), widgetFont, EVENT_BUTTON2);
+  widgetNext =new Widget(1500, 600, 100, 40, 
+    "Next", color(220, 83, 0), widgetFont, EVENT_BUTTON1);
+  widgetPrev = new Widget(700, 600, 100, 40, "Previous", color(135, 208, 250), widgetFont, EVENT_BUTTON2);
   widgetList = new ArrayList<Widget>();
   widgetList.add(widgetNext); 
   widgetList.add(widgetPrev);
@@ -77,7 +77,7 @@ void draw() {
     Widget aWidget = (Widget) widgetList.get(i);
     aWidget.draw();
   }
- 
+   Review nextReview = (Review) reviewsArray.get(reviewNumDisplayed);
    nextReview.draw(200);
 }
 void mousePressed() {
