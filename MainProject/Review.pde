@@ -1,7 +1,6 @@
-PFont textFont;
-int i;
-String reviewLabel;
 class Review {
+  PFont textFont;
+  String reviewLabel;
   String userID, userName, businessID, businessName, stars, date, review, useful, funny, cool;
   int i;
   Review(String userID, String userName, String businessID, String businessName, String stars, 
@@ -45,49 +44,49 @@ class Review {
     if (this.useful.equals("0")) {
       usefulInt = 0;
     } else if (this.useful.equals("1")) {
-      usefulInt = 1; 
+      usefulInt = 1;
     } else if (this.useful.equals("2")) {
-      usefulInt = 2; 
+      usefulInt = 2;
     } else if (this.useful.equals("3")) {
-      usefulInt = 3; 
+      usefulInt = 3;
     } else if (this.useful.equals("4")) {
-      usefulInt = 4; 
+      usefulInt = 4;
     } else if (this.useful.equals("5")) {
-      usefulInt = 5; 
+      usefulInt = 5;
     }
     return usefulInt;
   }
   int getFunny() {
-     int funnyInt = 0;
+    int funnyInt = 0;
     if (this.funny.equals("0")) {
       funnyInt = 0;
     } else if (this.funny.equals("1")) {
-      funnyInt = 1; 
+      funnyInt = 1;
     } else if (this.funny.equals("2")) {
-      funnyInt = 2; 
+      funnyInt = 2;
     } else if (this.funny.equals("3")) {
-      funnyInt = 3; 
+      funnyInt = 3;
     } else if (this.funny.equals("4")) {
-      funnyInt = 4; 
+      funnyInt = 4;
     } else if (this.funny.equals("5")) {
-      funnyInt = 5; 
+      funnyInt = 5;
     }
     return funnyInt;
   }
   int getCool() {
-     int coolInt = 0;
+    int coolInt = 0;
     if (this.cool.equals("0")) {
       coolInt = 0;
     } else if (this.cool.equals("1")) {
-      coolInt = 1; 
+      coolInt = 1;
     } else if (this.cool.equals("2")) {
-      coolInt = 2; 
+      coolInt = 2;
     } else if (this.cool.equals("3")) {
-      coolInt = 3; 
+      coolInt = 3;
     } else if (this.cool.equals("4")) {
-      coolInt = 4; 
+      coolInt = 4;
     } else if (this.cool.equals("5")) {
-      coolInt = 5; 
+      coolInt = 5;
     }
     return coolInt;
   }
@@ -97,7 +96,7 @@ class Review {
     return reviewLabel;
   }
   String reviewToString() {
-    String reviewLines[] = split(review, ".");
+    String reviewLines[] = review.split( "[.|,|?|!]+");
     String reviewToString = "";
     for (int i = 0; i < reviewLines.length; i++) {
       reviewToString += "\n" + reviewLines[i] + ".";
@@ -111,11 +110,11 @@ class Review {
     textFont = loadFont("SansSerif-14.vlw");
     text(toString(), REVIEW_X_POS, y);
     /* text("User ID : " + userID + "\nUsername : " + userName + "\nBusiness ID : " + businessID + 
-        "\nBusiness Name : " + businessName + "\nStars : " + stars + "\nDate : " + date 
-        + "\nReview : \n" + review + "\nUseful : " + useful
-        + "\nFunny : " + funny + "\nCool : " + cool, TEXT_X, TEXT_Y); */
-   
-     text(reviewToString(), 10, 200);
+     "\nBusiness Name : " + businessName + "\nStars : " + stars + "\nDate : " + date 
+     + "\nReview : \n" + review + "\nUseful : " + useful
+     + "\nFunny : " + funny + "\nCool : " + cool, TEXT_X, TEXT_Y); */
+
+    //   text(reviewToString(), 10, 200);
   }
   int stringToInt(String number) {
     int newNumber = 0;
