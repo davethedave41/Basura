@@ -1,120 +1,76 @@
-Review review;
-class BarChartIndividual{ 
-  Review review;
+class BarChart { 
   PFont stdFont;
-  int x1=280;      //useful
-  int y1=1640;
-  int x2=0;        //funny
-  int y2=0;
-  int x3=0;        //cool
-  int y3=0;
-  int x4=0;        //stars
-  int y4=0;
-//  int uR=5;
-//  int cR=4;
- // int fR=0;
- String useful="Useful", funny="Funny", cool="Cool", stars="Stars";
+  int oneValueX;
+  int oneValueY;
+  int axisX;      //coordinates for starting point of x-axis and y-axis
+  int axisY;
+  int graphHeight;
+  int graphWidth;
+  String title;
+  String xLabel;
+  String yLabel;
+  int xPoints;
+  int yPoints;
+  int barWidth;
+  int[] statistics;
+  int max;
+  int min;
+  int maxPoint;
+  Review review;
 
-
-  BarChartIndividual(Review review) {
+  BarChart(Review review, int maxPoint, int barWidth, int yPoints, int xPoints, String xLabel, 
+    String yLabel, String title, int graphWidth, int graphHeight, int axisX, 
+    int axisY, int oneValueX, int oneValueY,int[] statistics) {
     this.review=review;
+    this.maxPoint=maxPoint;
+    this.barWidth=barWidth;
+    this.yPoints=yPoints;
+    this.xPoints=xPoints;
+    this.xLabel=xLabel;
+    this.yLabel=yLabel;
+    this.title=title;
+    this.graphWidth=graphWidth;
+    this.graphHeight=graphHeight;
+    this.axisX=axisX;
+    this.axisY=axisY;
+    this.oneValueX=oneValueX;
+    this.oneValueY=oneValueY;
+    this.statistics=statistics;
   }
 
-  /*Review getReview(Review review) {
-    return review;
-  }*/
-  void draw(float y) {
-    fill(255);
-    rect(barX, y, barWidthH, barHeightH);
-    rect(barX, y,barWidthV,barHeightV);
-    rect(barX-20,y-oneRating,20,barHeightH);
-    text("1",barX-30,y-oneRating+barHeightH);
-    rect(barX-20,y-2*oneRating,20,barHeightH);
-    text("2",barX-30,y-2*oneRating+barHeightH);
-    rect(barX-20,y-3*oneRating,20,barHeightH); 
-    text("3",barX-30,y-3*oneRating+barHeightH);
-    rect(barX-20,y-4*oneRating,20,barHeightH);
-    text("4",barX-30,y-4*oneRating+barHeightH);
-    rect(barX-20,y-5*oneRating,20,barHeightH);
-    text("5",barX-30,y-5*oneRating+barHeightH);
-    stdFont = loadFont("SansSerif-14.vlw");
-    fill(255,5,5);
-    text(useful,barX+barWidthV+barGraphWidth/3-5,y+20);
-    fill(0,255,0);
-    text(funny,barX+barWidthV+barGraphWidth+barGraphWidth/3-5,y+20);
-    fill(0,0,255);
-    text(cool,barX+barWidthV+2*barGraphWidth+barGraphWidth/3-5,y+20);
-    switch(review.getUseful()){
-      case 1:
-      fill(255,0,0);
-      rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
-     break;
-     case 2:
-     fill(255,0,0);
-     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
-     break;
-     case 3:
-     fill(255,0,0);
-     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
-     break;
-     case 4:
-     fill(255,0,0);
-     rect(barX+barWidthV, y, barGraphWidth,-1*(oneRating*review.getUseful()));
-     break;
-     case 5:
-     fill(255,0,0);
-     rect(barX+barWidthV, y-1, barGraphWidth,-1*(oneRating*review.getUseful()));
-     break;
-     default:
-     break;
+  void draw() {
+    fill(0);
+    stdFont=loadFont("Dialog.plain-15.vlw");
+    fill(100,10,50);
+    text(xLabel, graphWidth/2+axisX-20, axisY+50);
+    text(yLabel, axisX-70, axisY-graphHeight/3-20);
+    strokeWeight(1);
+    line(axisX, axisY, graphWidth+axisX, axisY);
+    line(axisX, axisY, axisX, axisY-graphHeight);
+    setSteps();
+    for (int i=0; i<xPoints; i++) {
+      stroke(255);
+      rect(axisX+(oneValueX*i),axisY,200,-1*(oneValueY*statistics[i]));
     }
-    switch(review.getFunny()){
-    case 1:
-     fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getFunny()));
-    break;
-    case 2:
-     fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getFunny()));
-    break;
-    case 3:
-     fill(0,255,0);
-     rect(barX+barWidthV+barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getFunny()));
-    break;
-    case 4:
-     fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,barWidthV,barGraphWidth,-1*(oneRating*review.getFunny()));
-    break;
-    case 5:
-     fill(0,255,0);
-    rect(barX+barWidthV+barGraphWidth,barWidthV,barGraphWidth,-1*(oneRating*review.getFunny()));
-    break;
-    default:
-    break;
+  }
+
+  int getAxisX() {
+    return axisX;
+  }
+  int getOneValueX() {
+    return oneValueX;
+  }
+
+  void setSteps() {
+    int ySetter=maxPoint/yPoints;
+    for (int i=1; i<=yPoints; i++) {
+      line(axisX-5, axisY-((ySetter*i)*oneValueY), axisX+5, axisY-((ySetter*i)*oneValueY));
+      text(""+ySetter*i, axisX-20, axisY-((ySetter*i)*oneValueY)+5);
+      println((ySetter*i)*oneValueY);
     }
-    switch(review.getCool()){
-    case 1:
-    fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
-    break;
-    case 2:
-    fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
-    break;
-    case 3:
-    fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
-    break;
-    case 4:
-    fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
-    break;
-    case 5:
-    fill(0,0,255);
-    rect(barX+barWidthV+2*barGraphWidth,y,barGraphWidth,-1*(oneRating*review.getCool()));
-    break;
-    default:
-    break;
+
+    for (int i=1; i<=xPoints; i++) {
+      line(axisX+(oneValueX*i), axisY-5, axisX+(oneValueX*i), axisY+5);
     }
   }
 }
