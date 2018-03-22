@@ -49,4 +49,9 @@ class Widget {
   int getHeight() {
    return height; 
   }
+  
+  void setLabel(String label) {
+    this.label=label;
+  }
+  
 }
