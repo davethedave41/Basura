@@ -1,21 +1,30 @@
+
 class Screen {
   ArrayList wijList, addedWij;
   color background;
   int event;
+  background backgroundTemplate;
+  Widget red, green, next, prev;
+  String heading;
 
-  Screen( Widget red, Widget green, Widget next, Widget prev) {
+  Screen(Widget red, Widget green, Widget next, Widget prev, background backgroundTemplate) {
+    this.red = red;
+    this.green = green;
+    this.next = next;
+    this.prev = prev;
+    this.backgroundTemplate = backgroundTemplate;
     wijList = new ArrayList();
     addedWij = new ArrayList();
     wijList.add(red);
-  //  wijList.add(blue);
     wijList.add(green);
     wijList.add(next);
     wijList.add(prev);
   }
   void draw() {
-    background(background);
+    backgroundTemplate.draw();
     for (int i = 0; i < wijList.size(); i++) {
       Widget aWij = (Widget) wijList.get(i);
+      textSize(16);
       aWij.draw();
     }
     if (addedWij != null) {
@@ -24,6 +33,21 @@ class Screen {
         aWij.draw();
       }
     }
+    for (int i = 0; i<widgetList.size(); i++) {
+    Widget aWidget = (Widget) widgetList.get(i);
+    event = aWidget.getEvent(mouseX, mouseY);
+    if (event == 1 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
+      rect(aWidget.getX() + 32, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);
+    } else if (event == 2 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
+      rect(aWidget.getX() + 19, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);
+    } else if (event == 3 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
+      rect(aWidget.getX() + 10, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);
+    } else if (event == 4 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()){
+      rect(aWidget.getX() + 30, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);    
+    } else if (event == 5 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
+      rect(aWidget.getX() + 28, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);   
+    }
+  }
   }
   void addWidget() {
     int count = 0;

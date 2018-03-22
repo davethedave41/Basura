@@ -15,7 +15,7 @@ class Widget {
     this.widgetColor = widgetColor; 
     this.widgetFont = widgetFont;
     labelColor = color(0);
-    borderColor = color(0);
+    borderColor = color(242, 204, 47);
   }
   void draw() {
 
