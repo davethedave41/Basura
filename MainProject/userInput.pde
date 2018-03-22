@@ -11,7 +11,7 @@ String b = "Search ";
   void draw() {
     //textAlign(CENTER);
     fill(255);
-    rect(1400, 20, 300, 50);
+    rect(1400, 20, 300, 50, 20);
     textSize(15);
     textAlign(CENTER);
     fill(24);
