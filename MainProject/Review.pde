@@ -1,8 +1,9 @@
 class Review {
-  PFont textFont;
-  String reviewLabel;
+  PFont textFont, labelFont;
+  String reviewLabel, businessLabel, userNameLabel, dateLabel, idLabel;
   String userID, userName, businessID, businessName, stars, date, review, useful, funny, cool;
   int i;
+  color headerColor, textColor;
   Review(String userID, String userName, String businessID, String businessName, String stars, 
     String date, String review, String useful, String funny, String cool, int i) {
 
@@ -103,12 +104,48 @@ class Review {
     }
     return reviewToString;
   }
+   String userString() {
+   userNameLabel = "Posted by ";  
+   return userNameLabel;
+  }
+  String dateString() {
+   dateLabel = "Posted on ";
+   return dateLabel;
+    
+  }
+  String idLabel() {
+    idLabel = "User ID: " + userID + "\nBusiness ID:" + businessID;
+    return idLabel;
+     
+  }
   void draw(float y) {
     if (y < 150) {
       fill(56, 90, 94);
     } else fill(0);
     textFont = loadFont("SansSerif-14.vlw");
-    text(toString(), REVIEW_X_POS, y);
+    labelFont = loadFont("CopperplateGothic-Bold-18.vlw");
+    headerColor = color(2, 183, 201);
+    textColor = color(0);
+    textFont(labelFont);
+    textAlign(CENTER);
+    textSize(25);
+    fill(headerColor);
+    text(businessName, REVIEW_X_POS, y);
+    textSize(18);
+    text(userString(), REVIEW_X_POS - 200, y + 50, headerColor);
+    textFont(textFont);
+    fill(textColor);
+    text(userName, REVIEW_X_POS - 100, y + 50, textColor); 
+    textFont(labelFont);
+    fill(headerColor);
+    text(dateString(), REVIEW_X_POS + 100, y + 50, headerColor);
+    textFont(textFont);
+    fill(textColor);
+    text(date, REVIEW_X_POS + 200, y + 50, textColor);
+    textAlign(CENTER);
+    text(reviewToString(), REVIEW_X_POS, y + 100, textColor);
+  
+    
     /* text("User ID : " + userID + "\nUsername : " + userName + "\nBusiness ID : " + businessID + 
      "\nBusiness Name : " + businessName + "\nStars : " + stars + "\nDate : " + date 
      + "\nReview : \n" + review + "\nUseful : " + useful
