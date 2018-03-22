@@ -36,8 +36,8 @@ class LinePlot {
     this.statistics=statistics;
     this.oneValueX=oneValueX;
     this.oneValueY=oneValueY;
-    max=getMax(statistics);
-    min=getMin(statistics);
+    //max=getMax(statistics);
+    //min=getMin(statistics);
     this.maxPoint=maxPoint;
   }
 
@@ -78,7 +78,7 @@ class LinePlot {
 
 }
 
-int getMax(int[] statistics) {
+/*int getMax(int[] statistics) {
   int max=0;
   for (int i=0; i<statistics.length; i++) {
     if (max<statistics[i]) {
@@ -96,7 +96,7 @@ int getMin(int[] statistics) {
     }
   }
   return min;
-}
+}*/
 
 void setSteps() {
   int ySetter=maxPoint/yPoints;
