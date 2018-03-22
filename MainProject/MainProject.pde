@@ -15,19 +15,22 @@ ArrayList<Widget> widgetList;
 PFont widgetFont;
 float y = 100;
 Screen currentScreen, businessScreen, userScreen, reviewScreen;
+color widgetColor;
 void setup () {
   starImage=loadImage("star.gif");
+  widgetColor = color(255);
+  
   size(1800, 1000);
   // reviewTable = loadTable("reviews_cleaned.csv", "header");
   // vs1 = new VScrollbar(SCREEN_X, 0, SCROLLWIDTH, SCROLLHEIGHT, 3*5+1);
   widgetFont = loadFont("SansSerif-14.vlw"); 
   textFont(widgetFont);
-  widgetNext =new Widget(1500, 600, 100, 40, 
-    "Next", color(220, 83, 0), widgetFont, EVENT_BUTTON1);
-  widgetPrev = new Widget(700, 600, 100, 40, "Previous", color(135, 208, 250), widgetFont, EVENT_BUTTON2);
-  bizWidget = new Widget(1000, 30, 100, 40, "Businesses", color(135, 208, 250), widgetFont, EVENT_BUTTON3);
-  userWidget = new Widget(800, 30, 100, 40, "Users", color(135, 208, 250), widgetFont, EVENT_BUTTON4);
-  reviewWidget = new Widget(600, 30, 100, 40, "Home", color(135, 208, 250), widgetFont, EVENT_BUTTON5);
+  widgetNext =new Widget(924, 600, 100, 40, 
+    "Next", widgetColor, widgetFont, EVENT_BUTTON1);
+  widgetPrev = new Widget(700, 600, 100, 40, "Previous", widgetColor, widgetFont, EVENT_BUTTON2);
+  bizWidget = new Widget(700, 30, 100, 40, "Businesses", widgetColor, widgetFont, EVENT_BUTTON3);
+  userWidget = new Widget(924, 30, 100, 40, "Users", widgetColor, widgetFont, EVENT_BUTTON4);
+  reviewWidget = new Widget(600, 30, 100, 40, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
   widgetList = new ArrayList<Widget>();
   widgetList.add(widgetNext); 
   widgetList.add(widgetPrev);
@@ -38,9 +41,9 @@ void setup () {
   reviews = loadStrings("reviews_cleaned.csv");
   userText = new userInput();
   backgroundTemplate = new background();
-  businessScreen = new Screen(userWidget, reviewWidget, widgetNext, widgetPrev);
-  userScreen = new Screen(bizWidget, reviewWidget, widgetNext, widgetPrev);
-  reviewScreen = new Screen (bizWidget, userWidget, widgetNext, widgetPrev);
+  businessScreen = new Screen(userWidget, reviewWidget, widgetNext, widgetPrev, backgroundTemplate);
+  userScreen = new Screen(bizWidget, reviewWidget, widgetNext, widgetPrev, backgroundTemplate);
+  reviewScreen = new Screen (bizWidget, userWidget, widgetNext, widgetPrev, backgroundTemplate);
   currentScreen = reviewScreen;
   println("there are " + reviews.length + " lines");
   for (int i = 1; i < reviews.length; i++) {
@@ -93,38 +96,24 @@ void setup () {
 }
 void draw() {
   // float leftPos = vs1.getPos();
-  backgroundTemplate.draw();
- // currentScreen.draw();
+  //backgroundTemplate.draw();
+  currentScreen.draw();
   userText.draw();
   userText.keyPressed();
   //  barChart.draw(800);
-  starCounter.draw(800);
+  starCounter.draw(200);
   // nextReview = (Review) reviewsArray.get(1);
   // nextReview.draw(-leftPos + 200);
   // testReview.draw(leftPos);
   // nextReview.draw(leftPos + 200);
-  for ( int i =0; i < widgetList.size(); i ++) {
+  /*for ( int i =0; i < widgetList.size(); i ++) {
     Widget aWidget = (Widget) widgetList.get(i);
     aWidget.draw();
-  } 
+  } */
   Review nextReview = (Review) reviewsArray.get(reviewNumDisplayed);
-  nextReview.draw(300);
+  nextReview.draw(200);
   int event;
-  for (int i = 0; i<widgetList.size(); i++) {
-    Widget aWidget = (Widget) widgetList.get(i);
-    event = aWidget.getEvent(mouseX, mouseY);
-    if (event == 1 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
-      rect(aWidget.getX() + 32, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);
-    } else if (event == 2 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
-      rect(aWidget.getX() + 19, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);
-    } else if (event == 3 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
-      rect(aWidget.getX() + 10, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);
-    } else if (event == 4 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()){
-      rect(aWidget.getX() + 30, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);    
-    } else if (event == 5 && mouseX > aWidget.getX() && mouseX < aWidget.getX() + aWidget.getWidth() && mouseY > aWidget.getY() && mouseY < aWidget.getY() + aWidget.getHeight()) {
-      rect(aWidget.getX() + 28, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);   
-    }
-  }
+  
 }
 void mousePressed() {
   int event;
@@ -149,9 +138,11 @@ void mousePressed() {
       currentScreen = businessScreen;
       break;
     case EVENT_BUTTON4:
+      println("Users");
       screenInt = 3;
       currentScreen = userScreen;
      case EVENT_BUTTON5:
+      println("Home");
       screenInt = 1;
       currentScreen = reviewScreen;
     }
