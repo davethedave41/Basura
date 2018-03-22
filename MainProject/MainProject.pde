@@ -1,4 +1,5 @@
 Table reviewTable;
+TextWidget tW;
 userInput userText;
 background backgroundTemplate;
 //BarChartIndividual barChart;
@@ -19,7 +20,8 @@ color widgetColor;
 void setup () {
   starImage=loadImage("star.gif");
   widgetColor = color(255);
-  
+  tW=new TextWidget(1400, 20, 300, 50, "Search...", color(255), widgetFont, EVENT_ONE, 25);//TextWidget(int x, int y, int width, int height, String label, color widgetColor, PFont font, int event, int maxLength) {
+
   size(1800, 1000);
   // reviewTable = loadTable("reviews_cleaned.csv", "header");
   // vs1 = new VScrollbar(SCREEN_X, 0, SCROLLWIDTH, SCROLLHEIGHT, 3*5+1);
@@ -98,8 +100,9 @@ void draw() {
   // float leftPos = vs1.getPos();
   //backgroundTemplate.draw();
   currentScreen.draw();
-  userText.draw();
-  userText.keyPressed();
+  //userText.draw();
+  //userText.keyPressed();
+  tW.draw();
   //  barChart.draw(800);
   starCounter.draw(200);
   // nextReview = (Review) reviewsArray.get(1);
@@ -117,6 +120,11 @@ void draw() {
 }
 void mousePressed() {
   int event;
+  if(tW.label.equals("Search...")){
+    tW.setLabel("");
+    tW.label="";
+   // println(tW.label);
+  }
   for ( int i =0; i<widgetList.size(); i++) {
     Widget aWidget = (Widget) widgetList.get(i);
     event = aWidget.getEvent(mouseX, mouseY);
@@ -148,3 +156,23 @@ void mousePressed() {
     }
   }
 }
+  void keyPressed() {
+    if (tW != null) {
+      tW.append(key);
+    }
+    for(int i =0; i<reviewTable.getRowCount(); i++){
+      TableRow row = reviewTable.getRow(i);
+      String businessName = row.getString("business_name");
+      String userName = row.getString("user_name");
+      if ((key == ENTER) || (key == RETURN)){
+        if(businessName.equals(label)){
+          row.draw();
+        }
+        if(userName.equals(label)){
+          row.draw();
+        }
+    }
+    println(tW.search);
+  }
+
+  }

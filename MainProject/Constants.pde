@@ -24,6 +24,7 @@ final int EVENT_BUTTON3=3;
 final int EVENT_BUTTON4=4;
 final int EVENT_BUTTON5=5;
 final int EVENT_NULL=0;
+final int EVENT_ONE=1;
 final int WIJ_Y = 500;
 final int WIJ_WIDTH = 100;
 final int WIJ_HEIGHT= 40;
