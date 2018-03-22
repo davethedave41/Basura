@@ -160,19 +160,23 @@ void mousePressed() {
     if (tW != null) {
       tW.append(key);
     }
-    for(int i =0; i<reviewTable.getRowCount(); i++){
-      TableRow row = reviewTable.getRow(i);
-      String businessName = row.getString("business_name");
-      String userName = row.getString("user_name");
+    Review review;
+    String businessName;
+    String userName;
+    println(tW.search);
+    for(int i =0; i<reviewsArray.size(); i++){
+     review = reviewsArray.get(i);
+     businessName=review.getBusinessName();
+     userName=review.getUserName();
+     
       if ((key == ENTER) || (key == RETURN)){
-        if(businessName.equals(label)){
-          row.draw();
+        if(businessName.equals(tW.search)){
+          //row.draw();
         }
-        if(userName.equals(label)){
-          row.draw();
+        if(userName.equals(tW.search)){
+          //row.draw();
         }
     }
-    println(tW.search);
   }
 
   }
