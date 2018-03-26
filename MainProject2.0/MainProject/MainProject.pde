@@ -74,15 +74,29 @@ void setup () {
     Review newReview = new Review(userID, userName, businessID, businessName, stars, date, review, useful, funny, cool, i2);
     reviewsArray.add(newReview);
   }
-   for (int i = 1; i < reviewTable.getRowCount(); i++) {
-    TableRow row = reviewTable.getRow(i);
-    String name = row.getString("business_name");
-    businessNames.add(name);
+   //for (int i = 1; i < reviewTable.getRowCount(); i++) {
+   // TableRow row = reviewTable.getRow(i);
+   // String name = row.getString("business_name");
+   // businessNames.add(name);
+ // }
+ // for (int i = 1; i < reviewTable.getRowCount(); i++) {
+   // TableRow row = reviewTable.getRow(i);
+   // String name = row.getString("user_name");
+   // userNames.add(name);
+ // }
+ for (int i = 1; i < reviewsArray.size(); i++) {
+    Review testReview = (Review) reviewsArray.get(i);
+    String name = testReview.getBusinessName();
+    if (!businessNames.contains(name) ){
+      businessNames.add(name);
+    }
   }
-  for (int i = 1; i < reviewTable.getRowCount(); i++) {
-    TableRow row = reviewTable.getRow(i);
-    String name = row.getString("user_name");
-    userNames.add(name);
+  for (int i = 1; i < reviewsArray.size(); i++) {
+    Review testReview = (Review) reviewsArray.get(i);
+    String name = testReview.getUserName();
+    if (!userNames.contains(name)) {
+      userNames.add(name);
+    }
   }
   if (reviewNumDisplayed < 0) {
     reviewNumDisplayed = 0;
@@ -254,10 +268,12 @@ void mousePressed() {
       println("Users");
       screenInt = 3;
       currentScreen = userScreen;
+      break;
     case EVENT_BUTTON5:
       println("Home");
       screenInt = 1;
       currScreen = reviewScreen;
+      break;
     }
   }
 }
