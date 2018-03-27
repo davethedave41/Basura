@@ -38,7 +38,7 @@ void setup () {
   widgetPrev = new Widget(700, 600, 100, 40, "Previous", widgetColor, widgetFont, EVENT_BUTTON2);
   bizWidget = new Widget(700, 30, 100, 40, "Businesses", widgetColor, widgetFont, EVENT_BUTTON3);
   userWidget = new Widget(924, 30, 100, 40, "Users", widgetColor, widgetFont, EVENT_BUTTON4);
-  reviewWidget = new Widget(600, 30, 100, 40, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
+  reviewWidget = new Widget(474, 30, 100, 40, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
   businessNames = new ArrayList<String>();
   userNames = new ArrayList<String>();
   widgetList = new ArrayList<Widget>();
