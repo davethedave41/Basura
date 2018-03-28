@@ -43,14 +43,6 @@ class LinePlot {
 
   void draw() {//line(x1,y1,x2,y2)
     stdFont=loadFont("SansSerif-14.vlw");
-       pushMatrix();
-  translate( axisX-graphWidth/2-20, axisY-graphHeight-graphHeight/2);      //rotating the text by 90 degrees
-  rotate(2*PI-(PI/2));
-  translate( axisX-graphWidth/2-20, axisY-graphHeight-graphHeight/2);
-  textAlign(CENTER);
-  text(yLabel, axisX-graphWidth/2-20, axisY-graphHeight-graphHeight/2);
-  popMatrix();
-  textAlign(RIGHT);
     text(xLabel, graphWidth/2, axisY+40);
     text(yLabel, axisX-50, graphHeight);
     strokeWeight(1);

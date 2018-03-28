@@ -22,7 +22,7 @@ class Widget {
     fill(widgetColor);
     strokeWeight(2);
     stroke(borderColor);
-    rect(x, y, width, height);
+    rect(x, y, width, height, 20);
     fill(labelColor);
     text(label, x + width/2, y+height - 15);
     textWidth = textWidth(label);

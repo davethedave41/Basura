@@ -56,6 +56,10 @@ class Screen {
     addedWij.add(aWij);
     count++;
   }
+  void addWidget2(Widget widget){
+    wijList.add(widget);
+  }
+  
   color getBackground() {
     return background;
   }

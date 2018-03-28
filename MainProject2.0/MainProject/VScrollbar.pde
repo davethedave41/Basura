@@ -1,4 +1,4 @@
-/*class VScrollbar
+class VScrollbar
 {
   int swidth, sheight;    // width and height of bar
   int xpos, ypos;         // x and y position of bar
@@ -68,4 +68,4 @@
     // 0 and the total width of the scrollbar
     return spos * ratio;
   }
-}*/
+}
