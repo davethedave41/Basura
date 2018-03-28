@@ -11,11 +11,11 @@ String b = "Search ";
   void draw() {
     //textAlign(CENTER);
     fill(255);
-    rect(1400, 20, 300, 50);
+    rect(1200, 20, 300, 50);
     textSize(15);
     textAlign(CENTER);
     fill(24);
-    text(letters, 1500, 50); //130, 40);
+    text(letters, 1300, 50);//130, 40);
     //String b = "Search ";
     //textSize(15);
     //fill(24);
