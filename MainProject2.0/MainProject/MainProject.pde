@@ -53,6 +53,45 @@ void setup () {
   userText = new userInput();
   backgroundTemplate = new background();
   businessScreen = new Screen(userWidget, reviewWidget, backgroundTemplate, businessNames);
+   Widget busWidget1 = new Widget(100, 200, 100, 40, "Carini's", widgetColor, widgetFont, EVENT_BUTTON6);
+  Widget busWidget2 = new Widget(100, 250, 100, 40, "Quicktrip", widgetColor, widgetFont, EVENT_BUTTON7);
+  Widget busWidget3 = new Widget(100, 300, 100, 40, "Barrio Fiesta", widgetColor, widgetFont, EVENT_BUTTON8);
+  Widget busWidget4 = new Widget(100, 350, 100, 40, "Sally Beauty", widgetColor, widgetFont, EVENT_BUTTON9);
+  Widget busWidget5 = new Widget(100, 400, 100, 40, "Phoenix Pharmacy", widgetColor, widgetFont, EVENT_BUTTON10);
+  Widget busWidget6 = new Widget(100, 450, 100, 40, "Impact Auto", widgetColor, widgetFont, EVENT_BUTTON11);
+  Widget busWidget7 = new Widget(100, 500, 100, 40, "Liberty", widgetColor, widgetFont, EVENT_BUTTON12);
+  Widget busWidget8 = new Widget(100, 550, 100, 40, "Plantation Animal", widgetColor, widgetFont, EVENT_BUTTON13);
+  Widget busWidget9 = new Widget(100, 600, 100, 40, "Super Star", widgetColor, widgetFont, EVENT_BUTTON14);
+  Widget busWidget10 = new Widget(250, 200, 100, 40, "Capriotti's", widgetColor, widgetFont, EVENT_BUTTON15);
+  Widget busWidget11 = new Widget(250, 250, 100, 40, "Cool Springs", widgetColor, widgetFont, EVENT_BUTTON16);
+  Widget busWidget12 = new Widget(250, 300, 100, 40, "Peoria Nissan", widgetColor, widgetFont, EVENT_BUTTON17);
+  Widget busWidget13 = new Widget(250, 350, 100, 40, "Cafe Presse", widgetColor, widgetFont, EVENT_BUTTON18);
+  Widget busWidget14 = new Widget(250, 400, 100, 40, "Fresh & Easy", widgetColor, widgetFont, EVENT_BUTTON19);
+  Widget busWidget15 = new Widget(250, 450, 100, 40, "Office Team", widgetColor, widgetFont, EVENT_BUTTON20);
+  Widget busWidget16 = new Widget(250, 500, 100, 40, "Foreign Fix", widgetColor, widgetFont, EVENT_BUTTON22);
+  Widget busWidget17 = new Widget(250, 550, 100, 40, "Dollarama", widgetColor, widgetFont, EVENT_BUTTON23);
+  Widget busWidget18 = new Widget(250, 600, 100, 40, "McDonald's", widgetColor, widgetFont, EVENT_BUTTON24);
+  Widget busWidget19 = new Widget(250, 650, 100, 40, "Realstar", widgetColor, widgetFont, EVENT_BUTTON25);
+  
+  businessScreen.addWidget2(busWidget1);
+  businessScreen.addWidget2(busWidget2);
+  businessScreen.addWidget2(busWidget3);
+  businessScreen.addWidget2(busWidget4);
+  businessScreen.addWidget2(busWidget5);
+  businessScreen.addWidget2(busWidget6);
+  businessScreen.addWidget2(busWidget7);
+  businessScreen.addWidget2(busWidget8);
+  businessScreen.addWidget2(busWidget9);
+  businessScreen.addWidget2(busWidget10);
+  businessScreen.addWidget2(busWidget11);
+  businessScreen.addWidget2(busWidget12);
+  businessScreen.addWidget2(busWidget13);
+  businessScreen.addWidget2(busWidget14);
+  businessScreen.addWidget2(busWidget15);
+  businessScreen.addWidget2(busWidget16);
+  businessScreen.addWidget2(busWidget17);
+  businessScreen.addWidget2(busWidget18);
+  businessScreen.addWidget2(busWidget19);
   userScreen = new Screen(bizWidget, reviewWidget, backgroundTemplate, userNames);
 
   currScreen = reviewScreen;
@@ -343,7 +382,7 @@ double[]findAverageStars(String businessName) {      //finds the average star ra
 }
 double getTheAverageStarRating(double[]stars){
   Review aReview=reviewsArray.get(0);
-  aReview.getBusinessName()
+  aReview.getBusinessName();
 }
 void mousePressed() {
   int event;
