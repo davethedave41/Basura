@@ -1,12 +1,13 @@
 Table reviewTable;
 userInput userText;
 LinePlot lineplot;
+LinePlotStars linePlotStars;
 background backgroundTemplate;
 //BarChartIndividual barChart;
 PImage starImage;
 StarCounter starCounter;
 //VScrollbar vs1;
-int[] reviewCount;
+//int[] reviewCount;
 String[] reviews;
 Review testReview, nextReview;
 ArrayList<Review> reviewsArray;
@@ -21,10 +22,8 @@ float y = 100;
 Screen currentScreen, businessScreen, userScreen;
 ReviewScreen currScreen, reviewScreen;
 color widgetColor;
-void setup () {
 
-  reviewCount=new int[11];
-   
+void setup () {
   starImage=loadImage("star.gif");
   widgetColor = color(255);
   reviewTable=loadTable("reviews_cleaned.csv", "header");
@@ -38,7 +37,7 @@ void setup () {
   widgetPrev = new Widget(700, 600, 100, 40, "Previous", widgetColor, widgetFont, EVENT_BUTTON2);
   bizWidget = new Widget(700, 30, 100, 40, "Businesses", widgetColor, widgetFont, EVENT_BUTTON3);
   userWidget = new Widget(924, 30, 100, 40, "Users", widgetColor, widgetFont, EVENT_BUTTON4);
-  reviewWidget = new Widget(474, 30, 100, 40, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
+  reviewWidget = new Widget(600, 30, 100, 40, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
   businessNames = new ArrayList<String>();
   userNames = new ArrayList<String>();
   widgetList = new ArrayList<Widget>();
@@ -49,13 +48,13 @@ void setup () {
   widgetList.add(reviewWidget);
   reviewsArray = new ArrayList<Review>();
   linePlotArray = new ArrayList<LinePlot>();
- 
+
   reviews = loadStrings("reviews_cleaned.csv");
   userText = new userInput();
   backgroundTemplate = new background();
   businessScreen = new Screen(userWidget, reviewWidget, backgroundTemplate, businessNames);
   userScreen = new Screen(bizWidget, reviewWidget, backgroundTemplate, userNames);
-  
+
   currScreen = reviewScreen;
   println("there are " + reviews.length + " lines");
   for (int i = 1; i < reviewTable.getRowCount(); i++) {
@@ -74,40 +73,27 @@ void setup () {
     Review newReview = new Review(userID, userName, businessID, businessName, stars, date, review, useful, funny, cool, i2);
     reviewsArray.add(newReview);
   }
-   //for (int i = 1; i < reviewTable.getRowCount(); i++) {
-   // TableRow row = reviewTable.getRow(i);
-   // String name = row.getString("business_name");
-   // businessNames.add(name);
- // }
- // for (int i = 1; i < reviewTable.getRowCount(); i++) {
-   // TableRow row = reviewTable.getRow(i);
-   // String name = row.getString("user_name");
-   // userNames.add(name);
- // }
- for (int i = 1; i < reviewsArray.size(); i++) {
-    Review testReview = (Review) reviewsArray.get(i);
-    String name = testReview.getBusinessName();
-    if (!businessNames.contains(name) ){
-      businessNames.add(name);
-    }
+  for (int i = 1; i < reviewTable.getRowCount(); i++) {
+    TableRow row = reviewTable.getRow(i);
+    String name = row.getString("business_name");
+    businessNames.add(name);
   }
-  for (int i = 1; i < reviewsArray.size(); i++) {
-    Review testReview = (Review) reviewsArray.get(i);
-    String name = testReview.getUserName();
-    if (!userNames.contains(name)) {
-      userNames.add(name);
-    }
+  for (int i = 1; i < reviewTable.getRowCount(); i++) {
+    TableRow row = reviewTable.getRow(i);
+    String name = row.getString("user_name");
+    userNames.add(name);
   }
   if (reviewNumDisplayed < 0) {
     reviewNumDisplayed = 0;
   }
- 
+
   int[] statistics=findReviews(reviewsArray.get(0).getBusinessName());
-  lineplot=new LinePlot(50, 60, 10, 100, 900, 700, 500, "Review Activity", "Years", "Reviews", 1, 11, 10, 4, statistics);
+ linePlotStars=new LinePlotStars(5, 50, 70, 100, 900, 600, 400, "Average Star Ratings", "Years", "Average Stars", 1, 11, 5, 4, findAverageStars(reviewsArray.get(0).getBusinessName()));
+  //lineplot=new LinePlot(50, 60, 10, 100, 900, 700, 500, "Review Activity", "Years", "Reviews", 1, 11, 10, 4, statistics);
   Review nextReview = (Review) reviewsArray.get(reviewNumDisplayed);
   reviewScreen = new ReviewScreen (bizWidget, userWidget, widgetNext, widgetPrev, backgroundTemplate, reviewsArray, reviewNumDisplayed, lineplot);
   currScreen = reviewScreen;
-  
+
   //  barChart=new BarChartIndividual(nextReview);
 
   // testReview = (Review) reviewArray.get(1);
@@ -119,16 +105,17 @@ void setup () {
 }
 
 void draw() {
+  // linePlotStars.draw();
   // float leftPos = vs1.getPos();
   //backgroundTemplate.draw();
   if (screenInt == 1) {
     currScreen.draw();
   } else currentScreen.draw();
   userText.draw();
-
+  userText.keyPressed();
   //  barChart.draw(800);
   // starCounter.draw(200);
- // lineplot.draw();
+   linePlotStars.draw();
   // nextReview = (Review) reviewsArray.get(1);
   // nextReview.draw(-leftPos + 200);
   // testReview.draw(leftPos);
@@ -142,6 +129,7 @@ void draw() {
   int event;
 }
 int[] findReviews(String businessName) {//gets how many reviews the business got in each year, returns integer array.
+  int[] reviewCount=new int[11];
   Review currentReview;
   String nameCompared;
   businessName=getRidOfQuotation(businessName);
@@ -242,6 +230,121 @@ String getRidOfQuotation(String text) {
   return newString;
 }
 
+double calculateAverageStars(ArrayList<Integer> starArray) {    //gets the average star rating of a specific business for one year
+    int total=0;
+     if (starArray.size()>0) {
+    for (int i=0; i<starArray.size(); i++) {
+      total+=starArray.get(i);
+    }
+    int arrayLength=starArray.size();
+    double average=total/arrayLength;
+    return average;
+  } 
+  else {
+   System.out.println("i be broke");
+   return total;
+  }
+}
+
+double[]findAverageStars(String businessName) {      //finds the average star rating of a specific business for all its years
+  Review currentReview;
+  String nameCompared;
+  ArrayList<Integer>stars2007=new ArrayList<Integer>();
+  ArrayList<Integer>stars2008=new ArrayList<Integer>();
+  ArrayList<Integer>stars2009=new ArrayList<Integer>();
+  ArrayList<Integer>stars2010=new ArrayList<Integer>();
+  ArrayList<Integer>stars2011=new ArrayList<Integer>();
+  ArrayList<Integer>stars2012=new ArrayList<Integer>();
+  ArrayList<Integer>stars2013=new ArrayList<Integer>();
+  ArrayList<Integer>stars2014=new ArrayList<Integer>();
+  ArrayList<Integer>stars2015=new ArrayList<Integer>();
+  ArrayList<Integer>stars2016=new ArrayList<Integer>();
+  ArrayList<Integer>stars2017=new ArrayList<Integer>();
+  businessName=getRidOfQuotation(businessName);
+  for (int i=0; i<reviewsArray.size(); i++) {
+    currentReview=reviewsArray.get(i);
+    nameCompared= getRidOfQuotation(currentReview.getBusinessName());
+    if (businessName.equals(nameCompared)) {
+      String date=currentReview.getDate();
+      int reviewsYear=getYearFromDate(date);
+      int star=currentReview.getStars();
+      switch(reviewsYear) {
+      case 2007:
+        stars2007.add(star);
+        println(stars2007);
+        break;
+      case 2008:
+        stars2008.add(star);
+        println(stars2008);
+        break;
+      case 2009:
+        stars2009.add(star);
+        println(stars2009);
+        break;
+      case 2010:
+        stars2010.add(star);
+        println(stars2010);
+        break;
+      case 2011:
+        stars2011.add(star);
+        println(stars2011);
+        break;
+      case 2012:
+        stars2012.add(star);
+        println(stars2012);
+        break;
+      case 2013:
+        stars2013.add(star);
+        println(stars2013);
+        break;
+      case 2014:
+        stars2014.add(star);
+        println(stars2014);
+        break;
+      case 2015:
+        stars2015.add(star);
+        println(stars2015);
+        break;
+      case 2016:
+        stars2016.add(star);
+        println(stars2016);
+        break;
+      case 2017:
+        stars2017.add(star);
+        println(stars2017);
+        break;
+      default:
+        break;
+      }
+    }
+  }
+  double[]stats=new double[11];                //sending off array of star averages of each year
+  for(int i=0;i<11;i++){
+   println(stars2007.size()); 
+     println(stars2008.size()); 
+       println(stars2009.size()); 
+         println(stars2010.size()); 
+           println(stars2011.size()); 
+  }
+  stats[0]=calculateAverageStars(stars2007);
+  stats[1]=calculateAverageStars(stars2008);
+  stats[2]=calculateAverageStars(stars2009);
+  stats[3]=calculateAverageStars(stars2010);
+  stats[4]=calculateAverageStars(stars2011);
+  stats[5]=calculateAverageStars(stars2012);
+  stats[6]=calculateAverageStars(stars2013);
+  stats[7]=calculateAverageStars(stars2014);
+  stats[8]=calculateAverageStars(stars2015);
+  stats[9]=calculateAverageStars(stars2016);
+  stats[10]=calculateAverageStars(stars2017);
+  
+
+  return stats;
+}
+double getTheAverageStarRating(double[]stars){
+  Review aReview=reviewsArray.get(0);
+  aReview.getBusinessName()
+}
 void mousePressed() {
   int event;
   for ( int i =0; i<widgetList.size(); i++) {
@@ -268,15 +371,10 @@ void mousePressed() {
       println("Users");
       screenInt = 3;
       currentScreen = userScreen;
-      break;
     case EVENT_BUTTON5:
       println("Home");
       screenInt = 1;
       currScreen = reviewScreen;
-      break;
     }
   }
-}
-void keyPressed() {
- userText.userKeyPressed(); 
 }

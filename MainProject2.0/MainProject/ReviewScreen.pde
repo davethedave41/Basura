@@ -60,7 +60,7 @@ class ReviewScreen {
     starCounter = new StarCounter(stars, starImage);
     nextReview.draw(200);
     starCounter.draw(200);
-    linePlot.draw();
+   // linePlot.draw();
   }
   void addWidget() {
     int count = 0;

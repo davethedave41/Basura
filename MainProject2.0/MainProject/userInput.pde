@@ -23,7 +23,7 @@ String b = "Search ";
     //text(b, 850, 50);
   }
   
-  void userKeyPressed() {
+  void keyPressed() {
     textSize(15);
     fill(24);
     textAlign(CENTER);
