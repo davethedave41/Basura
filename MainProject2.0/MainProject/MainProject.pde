@@ -32,9 +32,9 @@ void setup () {
   // vs1 = new VScrollbar(SCREEN_X, 0, SCROLLWIDTH, SCROLLHEIGHT, 3*5+1);
   widgetFont = loadFont("SansSerif-14.vlw"); 
   textFont(widgetFont);
-  widgetNext =new Widget(924, 600, 100, 40, 
+  widgetNext =new Widget(1024, 190, 100, 40, 
     "Next", widgetColor, widgetFont, EVENT_BUTTON1);
-  widgetPrev = new Widget(700, 600, 100, 40, "Previous", widgetColor, widgetFont, EVENT_BUTTON2);
+  widgetPrev = new Widget(500, 190, 100, 40, "Previous", widgetColor, widgetFont, EVENT_BUTTON2);
   bizWidget = new Widget(700, 30, 100, 40, "Businesses", widgetColor, widgetFont, EVENT_BUTTON3);
   userWidget = new Widget(924, 30, 100, 40, "Users", widgetColor, widgetFont, EVENT_BUTTON4);
   reviewWidget = new Widget(600, 30, 100, 40, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
@@ -52,8 +52,8 @@ void setup () {
   reviews = loadStrings("reviews_cleaned.csv");
   userText = new userInput();
   backgroundTemplate = new background();
-  businessScreen = new Screen(userWidget, reviewWidget, backgroundTemplate, businessNames);
-   Widget busWidget1 = new Widget(100, 200, 100, 40, "Carini's", widgetColor, widgetFont, EVENT_BUTTON6);
+  businessScreen = new Screen(userWidget, reviewWidget, backgroundTemplate);//, businessNames);
+  Widget busWidget1 = new Widget(100, 200, 100, 40, "Carini's", widgetColor, widgetFont, EVENT_BUTTON6);
   Widget busWidget2 = new Widget(100, 250, 100, 40, "Quicktrip", widgetColor, widgetFont, EVENT_BUTTON7);
   Widget busWidget3 = new Widget(100, 300, 100, 40, "Barrio Fiesta", widgetColor, widgetFont, EVENT_BUTTON8);
   Widget busWidget4 = new Widget(100, 350, 100, 40, "Sally Beauty", widgetColor, widgetFont, EVENT_BUTTON9);
@@ -72,7 +72,7 @@ void setup () {
   Widget busWidget17 = new Widget(250, 550, 100, 40, "Dollarama", widgetColor, widgetFont, EVENT_BUTTON23);
   Widget busWidget18 = new Widget(250, 600, 100, 40, "McDonald's", widgetColor, widgetFont, EVENT_BUTTON24);
   Widget busWidget19 = new Widget(250, 650, 100, 40, "Realstar", widgetColor, widgetFont, EVENT_BUTTON25);
-  
+
   businessScreen.addWidget2(busWidget1);
   businessScreen.addWidget2(busWidget2);
   businessScreen.addWidget2(busWidget3);
@@ -92,7 +92,10 @@ void setup () {
   businessScreen.addWidget2(busWidget17);
   businessScreen.addWidget2(busWidget18);
   businessScreen.addWidget2(busWidget19);
-  userScreen = new Screen(bizWidget, reviewWidget, backgroundTemplate, userNames);
+  businessScreen.addWidget2(widgetNext);
+  businessScreen.addWidget2(widgetPrev);
+
+  userScreen = new Screen(bizWidget, reviewWidget, backgroundTemplate);//, userNames);
 
   currScreen = reviewScreen;
   println("there are " + reviews.length + " lines");
@@ -127,7 +130,7 @@ void setup () {
   }
 
   int[] statistics=findReviews(reviewsArray.get(0).getBusinessName());
- linePlotStars=new LinePlotStars(5, 50, 70, 100, 900, 600, 400, "Average Star Ratings", "Years", "Average Stars", 1, 11, 5, 4, findAverageStars(reviewsArray.get(0).getBusinessName()));
+  linePlotStars=new LinePlotStars(5, 50, 70, 100, 900, 600, 400, "Average Star Ratings", "Years", "Average Stars", 1, 11, 5, 4, findAverageStars(reviewsArray.get(0).getBusinessName()));
   //lineplot=new LinePlot(50, 60, 10, 100, 900, 700, 500, "Review Activity", "Years", "Reviews", 1, 11, 10, 4, statistics);
   Review nextReview = (Review) reviewsArray.get(reviewNumDisplayed);
   reviewScreen = new ReviewScreen (bizWidget, userWidget, widgetNext, widgetPrev, backgroundTemplate, reviewsArray, reviewNumDisplayed, lineplot);
@@ -154,7 +157,7 @@ void draw() {
   userText.keyPressed();
   //  barChart.draw(800);
   // starCounter.draw(200);
-   linePlotStars.draw();
+  linePlotStars.draw();
   // nextReview = (Review) reviewsArray.get(1);
   // nextReview.draw(-leftPos + 200);
   // testReview.draw(leftPos);
@@ -270,18 +273,17 @@ String getRidOfQuotation(String text) {
 }
 
 double calculateAverageStars(ArrayList<Integer> starArray) {    //gets the average star rating of a specific business for one year
-    int total=0;
-     if (starArray.size()>0) {
+  int total=0;
+  if (starArray.size()>0) {
     for (int i=0; i<starArray.size(); i++) {
       total+=starArray.get(i);
     }
     int arrayLength=starArray.size();
     double average=total/arrayLength;
     return average;
-  } 
-  else {
-   System.out.println("i be broke");
-   return total;
+  } else {
+    System.out.println("i be broke");
+    return total;
   }
 }
 
@@ -358,12 +360,12 @@ double[]findAverageStars(String businessName) {      //finds the average star ra
     }
   }
   double[]stats=new double[11];                //sending off array of star averages of each year
-  for(int i=0;i<11;i++){
-   println(stars2007.size()); 
-     println(stars2008.size()); 
-       println(stars2009.size()); 
-         println(stars2010.size()); 
-           println(stars2011.size()); 
+  for (int i=0; i<11; i++) {
+    println(stars2007.size()); 
+    println(stars2008.size()); 
+    println(stars2009.size()); 
+    println(stars2010.size()); 
+    println(stars2011.size());
   }
   stats[0]=calculateAverageStars(stars2007);
   stats[1]=calculateAverageStars(stars2008);
@@ -376,13 +378,15 @@ double[]findAverageStars(String businessName) {      //finds the average star ra
   stats[8]=calculateAverageStars(stars2015);
   stats[9]=calculateAverageStars(stars2016);
   stats[10]=calculateAverageStars(stars2017);
-  
+
 
   return stats;
 }
-double getTheAverageStarRating(double[]stars){
+double getTheAverageStarRating(double[]stars) {
   Review aReview=reviewsArray.get(0);
   aReview.getBusinessName();
+  double testDouble = 4.5;
+  return testDouble;
 }
 void mousePressed() {
   int event;
@@ -410,10 +414,69 @@ void mousePressed() {
       println("Users");
       screenInt = 3;
       currentScreen = userScreen;
+      break;
     case EVENT_BUTTON5:
       println("Home");
       screenInt = 1;
       currScreen = reviewScreen;
+      break;
+    case EVENT_BUTTON6:
+      println("One");
+      break;
+    case EVENT_BUTTON7:
+      println("Two");
+      break;
+    case EVENT_BUTTON8:
+      println("Three");
+      break;
+    case EVENT_BUTTON9:
+      println("Four");
+      break;
+    case EVENT_BUTTON10:
+      println("Five");
+      break;
+    case EVENT_BUTTON11:
+      println("Six");
+      break;
+    case EVENT_BUTTON12:
+      println("Seven");
+      break;
+    case EVENT_BUTTON13:
+      println("Eight");
+      break;
+    case EVENT_BUTTON14:
+      println("Nine");
+      break;
+    case EVENT_BUTTON15:
+      println("Ten");
+      break;
+    case EVENT_BUTTON16:
+      println("Eleven");
+      break;
+    case EVENT_BUTTON17:
+      println("Twelve");
+      break;
+    case EVENT_BUTTON18:
+      println("Thirteen");
+      break;
+    case EVENT_BUTTON19:
+      println("Fourteen");
+      break;
+    case EVENT_BUTTON20:
+      println("Fifteen");
+      break;
+    case EVENT_BUTTON21:
+      println("Sixteen");
+      break;
+    case EVENT_BUTTON23:
+      println("Seventeen");
+      break;
+    case EVENT_BUTTON24:
+      println("Eighteen");
+      break;
+    case EVENT_BUTTON25:
+      println("Nineteen");
+      break;
     }
   }
 }
