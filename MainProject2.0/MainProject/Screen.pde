@@ -8,7 +8,7 @@ class Screen {
   String heading;
   ArrayList<String> words;
 
-  Screen(Widget red, Widget green, background backgroundTemplate, ArrayList<String> words) {
+  Screen(Widget red, Widget green, background backgroundTemplate){//, ArrayList<String> words) {
     this.red = red; 
     this.green = green;
     this.backgroundTemplate = backgroundTemplate;
@@ -31,9 +31,9 @@ class Screen {
         aWij.draw();
       }
     }
-    for (int i = 0; i < words.size(); i++) {
-      text(words.get(i), REVIEW_X_POS, 200 + i * 20); 
-    }
+    //for (int i = 0; i < words.size(); i++) {
+     // text(words.get(i), REVIEW_X_POS, 200 + i * 20); 
+  //  }
     for (int i = 0; i<widgetList.size(); i++) {
     Widget aWidget = (Widget) widgetList.get(i);
     event = aWidget.getEvent(mouseX, mouseY);
@@ -49,6 +49,14 @@ class Screen {
       rect(aWidget.getX() + 28, aWidget.getY() + aWidget.getHeight() - 10, aWidget.getTextWidth(), 0.25);   
     }
   }
+  Review nextReview = (Review) reviewsArray.get(reviewNumDisplayed);
+  //  LinePlot linePlot = (LinePlot) linePlotArray.get(reviewNumDisplayed);
+   // String stars = nextReview.getStars();
+    int stars = nextReview.getStars();
+    starCounter = new StarCounter(stars, starImage);
+    nextReview.draw(200);
+    starCounter.draw(200);
+   // linePlot.draw();
   }
   void addWidget() {
     int count = 0;
