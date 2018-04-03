@@ -16,7 +16,7 @@ String b = "Search ";
     textSize(15);
     textAlign(CENTER);
     fill(24);
-    text(letters, 1300, 50);//130, 40);
+   // text(letters, 1300, 50);//130, 40);
     //String b = "Search ";
     //textSize(15);
     //fill(24);
@@ -29,27 +29,27 @@ String b = "Search ";
     fill(24);
     textAlign(CENTER);
     text(b, 1500, 50);
-    recentLetter = key;
+    recentLetter = key;}
     void append(char s){
     if(s==BACKSPACE){
     if(!label.equals(""))
     label=label.substring(0,label.length()-1);
     }
-    else if (label.length() <maxlen)
+   // else if (label.length() <maxlen)
     label=label+str(s);
-    if ((key == ENTER) || (key == RETURN) || (key == BACKSPACE)) {
-      println(letters);  // Print to console to see input
-      letters = letters - recentLetter;  // Clear the variable
-    } else if ((key > 31) && (key != CODED)) { 
+  //  if ((key == ENTER) || (key == RETURN) || (key == BACKSPACE)) {
+  //    println(letters);  // Print to console to see input
+   //   letters = letters - recentLetter;  // Clear the variable
+   // } else if ((key > 31) && (key != CODED)) { 
       // If the key is alphanumeric, add it to the String
-      b = "";
-      letters = letters + recentLetter; 
-    }
-  }
+    //  b = "";
+    //  letters = letters + recentLetter; 
+   // }
+ // }
   
 }
 
 /*
   
 
-*/
+*/}

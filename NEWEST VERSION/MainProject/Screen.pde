@@ -16,6 +16,8 @@ class Screen {
     addedWij = new ArrayList();
     wijList.add(red);
     wijList.add(green);
+   // mouseMoved = color(2, 183, 201);
+   // normal = color(56, 90, 94);
   }
   void draw() {
     backgroundTemplate.draw();
@@ -70,7 +72,7 @@ class Screen {
     addedWij.add(aWij);
     count++;
   }
-   void addWidget2(Widget widget){
+  void addWidget2(Widget widget) {
     wijList.add(widget);
     widgetList.add(widget);
   }
