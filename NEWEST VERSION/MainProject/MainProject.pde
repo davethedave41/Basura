@@ -14,6 +14,7 @@ ArrayList<String> businessNames, userNames;
 ArrayList<LinePlot> linePlotArray;
 int reviewNumDisplayed =0;
 int screenInt = 1;
+String busName;
 Widget widgetNext, widgetPrev, bizWidget, userWidget, reviewWidget, userWij, bizWij, mostRecent, topRated, searchWidget;
 ArrayList<Widget> widgetList, otherWij, bizWidgets, homeWij;
 PFont widgetFont;
@@ -33,34 +34,33 @@ void setup () {
   // vs1 = new VScrollbar(SCREEN_X, 0, SCROLLWIDTH, SCROLLHEIGHT, 3*5+1);
   widgetFont = loadFont("SansSerif-14.vlw"); 
   textFont(widgetFont);
-  widgetNext =new Widget(924, 600, 100, 40, 
+   widgetNext =new Widget(924, 600, 100, 40, 
     "Next", widgetColor, widgetFont, EVENT_BUTTON1);
-   searchWidget = new Widget(1500, 30, 100, 40, "Search", widgetColor, widgetFont, EVENT_BUTTON30);
   widgetPrev = new Widget(700, 600, 100, 40, "Previous", widgetColor, widgetFont, EVENT_BUTTON2);
-  bizWidget = new Widget(524, 30, 100, 40, "Businesses", widgetColor, widgetFont, EVENT_BUTTON3);
-  userWidget = new Widget(648, 30, 100, 40, "Users", widgetColor, widgetFont, EVENT_BUTTON4);
-  reviewWidget = new Widget(400, 30, 100, 40, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
-  mostRecent = new Widget(772, 30, 100, 40, "Recent", widgetColor, widgetFont, EVENT_BUTTON8);
-  topRated = new Widget(896, 30, 100, 40, "Top", widgetColor, widgetFont, EVENT_BUTTON9);
-  Widget busWidget1 = new Widget(100, 200, 100, 40, "Carini's", widgetColor, widgetFont, EVENT_BUTTON10);
-  Widget busWidget2 = new Widget(100, 250, 100, 40, "Quicktrip", widgetColor, widgetFont, EVENT_BUTTON11);
-  Widget busWidget3 = new Widget(100, 300, 100, 40, "Barrio Fiesta", widgetColor, widgetFont, EVENT_BUTTON12);
-  Widget busWidget4 = new Widget(100, 350, 100, 40, "Sally Beauty", widgetColor, widgetFont, EVENT_BUTTON13);
-  Widget busWidget5 = new Widget(100, 400, 100, 40, "Phoenix Pharmacy", widgetColor, widgetFont, EVENT_BUTTON14);
-  Widget busWidget6 = new Widget(100, 450, 100, 40, "Impact Auto", widgetColor, widgetFont, EVENT_BUTTON15);
-  Widget busWidget7 = new Widget(100, 500, 100, 40, "Liberty", widgetColor, widgetFont, EVENT_BUTTON16);
-  Widget busWidget8 = new Widget(100, 550, 100, 40, "Plantation Animal", widgetColor, widgetFont, EVENT_BUTTON17);
-  Widget busWidget9 = new Widget(100, 600, 100, 40, "Super Star", widgetColor, widgetFont, EVENT_BUTTON18);
-  Widget busWidget10 = new Widget(250, 200, 100, 40, "Capriotti's", widgetColor, widgetFont, EVENT_BUTTON19);
-  Widget busWidget11 = new Widget(250, 250, 100, 40, "Cool Springs", widgetColor, widgetFont, EVENT_BUTTON20);
-  Widget busWidget12 = new Widget(250, 300, 100, 40, "Peoria Nissan", widgetColor, widgetFont, EVENT_BUTTON21);
-  Widget busWidget13 = new Widget(250, 350, 100, 40, "Cafe Presse", widgetColor, widgetFont, EVENT_BUTTON22);
-  Widget busWidget14 = new Widget(250, 400, 100, 40, "Fresh & Easy", widgetColor, widgetFont, EVENT_BUTTON23);
-  Widget busWidget15 = new Widget(250, 450, 100, 40, "Office Team", widgetColor, widgetFont, EVENT_BUTTON24);
-  Widget busWidget16 = new Widget(250, 500, 100, 40, "Foreign Fix", widgetColor, widgetFont, EVENT_BUTTON25);
-  Widget busWidget17 = new Widget(250, 550, 100, 40, "Dollarama", widgetColor, widgetFont, EVENT_BUTTON26);
-  Widget busWidget18 = new Widget(250, 600, 100, 40, "McDonald's", widgetColor, widgetFont, EVENT_BUTTON27);
-  Widget busWidget19 = new Widget(250, 650, 100, 40, "Realstar", widgetColor, widgetFont, EVENT_BUTTON28);
+  bizWidget = new Widget(524, 0, 100, 110, "Businesses", widgetColor, widgetFont, EVENT_BUTTON3);
+  userWidget = new Widget(648, 0, 100, 110, "Users", widgetColor, widgetFont, EVENT_BUTTON4);
+  reviewWidget = new Widget(400, 0, 100, 110, "Home", widgetColor, widgetFont, EVENT_BUTTON5);
+  mostRecent = new Widget(772, 0, 100, 110, "Recent", widgetColor, widgetFont, EVENT_BUTTON8);
+  topRated = new Widget(896, 0, 100, 110, "Top", widgetColor, widgetFont, EVENT_BUTTON9);
+  Widget busWidget1 = new Widget(500, 200, 200, 40, "Carini's", widgetColor, widgetFont, EVENT_BUTTON10);
+  Widget busWidget2 = new Widget(500, 250, 200, 40, "Quicktrip", widgetColor, widgetFont, EVENT_BUTTON11);
+  Widget busWidget3 = new Widget(500, 300, 200, 40, "Barrio Fiesta", widgetColor, widgetFont, EVENT_BUTTON12);
+  Widget busWidget4 = new Widget(500, 350, 200, 40, "Sally Beauty", widgetColor, widgetFont, EVENT_BUTTON13);
+  Widget busWidget5 = new Widget(500, 400, 200, 40, "Phoenix Pharmacy", widgetColor, widgetFont, EVENT_BUTTON14);
+  Widget busWidget6 = new Widget(500, 450, 200, 40, "Impact Auto", widgetColor, widgetFont, EVENT_BUTTON15);
+  Widget busWidget7 = new Widget(500, 500, 200, 40, "Liberty", widgetColor, widgetFont, EVENT_BUTTON16);
+  Widget busWidget8 = new Widget(500, 550, 200, 40, "Plantation Animal", widgetColor, widgetFont, EVENT_BUTTON17);
+  Widget busWidget9 = new Widget(500, 600, 200, 40, "Super Star", widgetColor, widgetFont, EVENT_BUTTON18);
+  Widget busWidget10 = new Widget(950, 200, 200, 40, "Capriotti's", widgetColor, widgetFont, EVENT_BUTTON19);
+  Widget busWidget11 = new Widget(950 , 250, 200, 40, "Cool Springs", widgetColor, widgetFont, EVENT_BUTTON20);
+  Widget busWidget12 = new Widget(950, 300, 200, 40, "Peoria Nissan", widgetColor, widgetFont, EVENT_BUTTON21);
+  Widget busWidget13 = new Widget(950, 350, 200, 40, "Cafe Presse", widgetColor, widgetFont, EVENT_BUTTON22);
+  Widget busWidget14 = new Widget(950, 400, 200, 40, "Fresh & Easy", widgetColor, widgetFont, EVENT_BUTTON23);
+  Widget busWidget15 = new Widget(950, 450, 200, 40, "Office Team", widgetColor, widgetFont, EVENT_BUTTON24);
+  Widget busWidget16 = new Widget(950, 500, 200, 40, "Foreign Fix", widgetColor, widgetFont, EVENT_BUTTON25);
+  Widget busWidget17 = new Widget(950, 550, 200, 40, "Dollarama", widgetColor, widgetFont, EVENT_BUTTON26);
+  Widget busWidget18 = new Widget(950, 600, 200, 40, "McDonald's", widgetColor, widgetFont, EVENT_BUTTON27);
+  Widget busWidget19 = new Widget(950, 650, 200, 40, "Realstar", widgetColor, widgetFont, EVENT_BUTTON28);
   businessNames = new ArrayList<String>();
   userNames = new ArrayList<String>();
   widgetList = new ArrayList<Widget>();
@@ -118,25 +118,7 @@ void setup () {
   userScreen = new Screen(widgetList, backgroundTemplate);
   homeScreen = new HomeScreen(homeWij, backgroundTemplate, userText);
  
-/*  businessScreen.addWidget2(busWidget1);
-  businessScreen.addWidget2(busWidget2);
-  businessScreen.addWidget2(busWidget3);
-  businessScreen.addWidget2(busWidget4);
-  businessScreen.addWidget2(busWidget5);
-  businessScreen.addWidget2(busWidget6);
-  businessScreen.addWidget2(busWidget7);
-  businessScreen.addWidget2(busWidget8);
-  businessScreen.addWidget2(busWidget9);
-  businessScreen.addWidget2(busWidget10);
-  businessScreen.addWidget2(busWidget11);
-  businessScreen.addWidget2(busWidget12);
-  businessScreen.addWidget2(busWidget13);
-  businessScreen.addWidget2(busWidget14);
-  businessScreen.addWidget2(busWidget15);
-  businessScreen.addWidget2(busWidget16);
-  businessScreen.addWidget2(busWidget17);
-  businessScreen.addWidget2(busWidget18);
-  businessScreen.addWidget2(busWidget19);*/
+
 
   currntscrn = homeScreen;
   println("there are " + reviews.length + " lines");
@@ -379,68 +361,109 @@ void mousePressed() {
       reviewNumDisplayed = 0;
     }
     switch(event) {
-    case EVENT_BUTTON10:
+     case EVENT_BUTTON10:
       println("One");
+      screenInt = 1;
+      filterByBusinessName("Carini's Homemade Ice Cream & Gelato");
       break;
     case EVENT_BUTTON11:
       println("Two");
+      busName = "Quiktrip No 453";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON12:
       println("Three");
+      busName = "Barrio Fiesta - The Original";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON13:
       println("Four");
+      busName = "Sally Beauty Supply";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON14:
       println("Five");
+      busName = "Phoenix Pharmacy";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON15:
       println("Six");
+      busName = "Impact Auto Glass & Tint"; 
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON16:
       println("Seven");
+      busName = "Liberty";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON17:
       println("Eight");
+      busName = "Plantation Animal Clinic";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON18:
       println("Nine");
+      busName = "Super Star Car Wash";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON19:
       println("Ten");
+      busName = "Capriotti's Sandwich Shop";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON20:
       println("Eleven");
+      busName = "Cool Springs Golf Centre";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON21:
       println("Twelve");
+      busName = "Peoria Nissan";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON22:
       println("Thirteen");
+      busName = "Cafe Presse";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON23:
       println("Fourteen");
+      busName = "Fresh & Easy";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON24:
       println("Fifteen");
+      busName = "OfficeTeam";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON25:
       println("Sixteen");
+      busName = "Foreign Fix";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON26:
       println("Seventeen");
+      busName = "Dollarama";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON27:
       println("Eighteen");
+      busName = "McDonalds";
+      filterByBusinessName(busName);
       break;
     case EVENT_BUTTON28:
       println("Nineteen");
-      break;
-    case EVENT_BUTTON29:
-      println("Twenty");
+      busName = "Realstar Management";
+      filterByBusinessName(busName);
       break;
     }
   }
+}
+void filterByBusinessName(String name) {
+      screenInt = 1;
+      busName = name;
+      reviewNumDisplayed = 0;
+      reviewScreen.setReviewNameFilter(busName);
 }
 void keyPressed() {
   userText.userKeyPressed();

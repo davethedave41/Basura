@@ -95,6 +95,10 @@ class Review {
      
   }
   
+  int getI() {
+    return i;
+  }
+  
   void draw(float y) {
     if (y < 150) {
       fill(56, 90, 94);
@@ -145,4 +149,5 @@ class Review {
     }
     return newNumber;
   }
+  
 }
