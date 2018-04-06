@@ -155,27 +155,6 @@ void setup () {
   homeWij.add(mostRecent);
   businessScreen = new Screen(bizWidgets, backgroundTemplate);
 
-
-  /*  businessScreen.addWidget2(busWidget1);
-   businessScreen.addWidget2(busWidget2);
-   businessScreen.addWidget2(busWidget3);
-   businessScreen.addWidget2(busWidget4);
-   businessScreen.addWidget2(busWidget5);
-   businessScreen.addWidget2(busWidget6);
-   businessScreen.addWidget2(busWidget7);
-   businessScreen.addWidget2(busWidget8);
-   businessScreen.addWidget2(busWidget9);
-   businessScreen.addWidget2(busWidget10);
-   businessScreen.addWidget2(busWidget11);
-   businessScreen.addWidget2(busWidget12);
-   businessScreen.addWidget2(busWidget13);
-   businessScreen.addWidget2(busWidget14);
-   businessScreen.addWidget2(busWidget15);
-   businessScreen.addWidget2(busWidget16);
-   businessScreen.addWidget2(busWidget17);
-   businessScreen.addWidget2(busWidget18);
-   businessScreen.addWidget2(busWidget19);*/
-
   currntscrn = homeScreen;
   println("there are " + reviews.length + " lines");
   for (int i = 1; i < reviewTable.getRowCount(); i++) {
@@ -197,16 +176,7 @@ void setup () {
   Review[]mostRecent=findMostRecent();
   recentScreen=new RecentScreen(widgetList, backgroundTemplate, mostRecent, reviewNumDisplayed);
   Review[]topRated=findTopRated();
-  //for (int i = 1; i < reviewTable.getRowCount(); i++) {
-  // TableRow row = reviewTable.getRow(i);
-  // String name = row.getString("business_name");
-  // businessNames.add(name);
-  // }
-  // for (int i = 1; i < reviewTable.getRowCount(); i++) {
-  // TableRow row = reviewTable.getRow(i);
-  // String name = row.getString("user_name");
-  // userNames.add(name);
-  // }
+ 
   for (int i = 1; i < reviewsArray.size(); i++) {
     Review testReview = (Review) reviewsArray.get(i);
     String name = testReview.getBusinessName();
@@ -276,14 +246,7 @@ void setup () {
   ratedScreen = new RecentScreen(widgetList, backgroundTemplate, topRated, reviewNumDisplayed);
   currScreen = reviewScreen;
 
-  //  barChart=new BarChartIndividual(nextReview);
-
-  // testReview = (Review) reviewArray.get(1);
-  // nextReview = (Review) reviewArray.get(2);
-  //  println(testReview.getUserName());
-  // println(testReview.getBusinessName());
-  //println(testReview.getReview());
-  //println(nextReview.getReview());
+ 
 }
 
 void draw() {
@@ -305,23 +268,7 @@ void draw() {
   else if(screenInt==6){
    cScreenTopRated.draw(); 
   }
-  //  searchBar.draw();
-  // searchBar.result();
-  //vs1.update();
-  // vs1.display();
-  //  barChart.draw(800);
-  // starCounter.draw(200);
-
-  // nextReview = (Review) reviewsArray.get(1);
-  // nextReview.draw(-leftPos + 200);
-  // testReview.draw(leftPos);
-  // nextReview.draw(leftPos + 200);
-  /*for ( int i =0; i < widgetList.size(); i ++) {
-   Widget aWidget = (Widget) widgetList.get(i);
-   aWidget.draw();
-   } */
-  // Review nextReview = (Review) reviewsArray.get(reviewNumDisplayed);
-  // nextReview.draw(200);
+ 
   int event;
   /**/
 }
@@ -596,18 +543,7 @@ void mousePressed() {
       }
     }
   }
-  /* for (int i = 6; i < userWijList.size(); i++) {
-   Widget aWidget = (Widget) userWijList.get(i);
-   event = aWidget.getEvent(mouseX, mouseY);
-   if (event != EVENT_NULL) {
-   String username = aWidget.getLabel();
-   userProfile = new UserScreen(reviewsArray, widgetList, backgroundTemplate, username); 
-   cScreen = userProfile;
-   cScreen.userProfileMousePress();
-   println("Setting screenInt to " + event);
-   screenInt = 1;
-   }
-   }*/
+
   if (screenInt == 3) {
     for (int i = 5; i < userWijList.size(); i++) {
       Widget aWidget = (Widget) userWijList.get(i);

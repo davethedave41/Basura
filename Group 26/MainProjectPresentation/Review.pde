@@ -122,13 +122,6 @@ class Review {
     textAlign(CENTER);
     text(reviewToString(), REVIEW_X_POS, y + 100, textColor);
   
-    
-    /* text("User ID : " + userID + "\nUsername : " + userName + "\nBusiness ID : " + businessID + 
-     "\nBusiness Name : " + businessName + "\nStars : " + stars + "\nDate : " + date 
-     + "\nReview : \n" + review + "\nUseful : " + useful
-     + "\nFunny : " + funny + "\nCool : " + cool, TEXT_X, TEXT_Y); */
-
-    //   text(reviewToString(), 10, 200);
   }
   int stringToInt(String number) {
     int newNumber = 0;

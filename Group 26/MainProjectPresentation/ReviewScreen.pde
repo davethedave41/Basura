@@ -81,19 +81,7 @@ class ReviewScreen { //<>// //<>// //<>//
     if (lineplot != null) {
      //lineplot.draw(); 
     }
-   /* for (int i = 0; i < linePlotArray.size(); i++) {
-     if (reviewsArray.get(reviewNumDisplayed).getBusinessName().equals(linePlotArray.get(i).getBusinessName())) {
-         lineplot = linePlotArray.get(i);
-         lineplot.draw();
-     }
-    } */
-
-    /* for (int i = 0; i < linePlotArray.size(); i++) {
-     if (reviewsArray.get(reviewNumDisplayed).getBusinessName().equals(linePlotArray.get(i).getBusinessName())) {
-     linePlotArray.get(i).draw();
-     // lineplot.draw();
-     }
-     } */
+  
 
 
 
@@ -153,10 +141,5 @@ class ReviewScreen { //<>// //<>// //<>//
     Review currentReviewDisplayed() {
     return nextReview; 
   }
- /* LinePlot makeLinePlot(Review nextReview) {
 
-    int[] statistics=findReviews(nextReview.getBusinessName());
-    lineplot=new LinePlot(50, 60, 10, 100, 900, 700, 500, "Review Activity", "Years", "Reviews", 1, 11, 10, 4, statistics); 
-    return linePlot;
-  }*/
 }

@@ -32,20 +32,7 @@ class Screen {
         aWij.draw();
       }
     }
-    /*  if (words.size() > 40) {
-     for (int i = 0; i < 35; i++) {
-     text(words.get(i), LEFT_X_POS, 200+i*20);
-     }
-     y = 0;
-     for (int index = 40; index < words.size(); index++) {
-     text(words.get(index), RIGHT_X_POS, 200+y*20); 
-     y++;
-     }
-     } else {
-     for (int i = 0; i < words.size(); i++) {
-     text(words.get(i), LIST_X_POS, 200+i*20);
-     }
-     }*/
+  
     //underline function
     for (int i = 0; i<wijList.size(); i++) {
       Widget aWidget = (Widget) wijList.get(i);
