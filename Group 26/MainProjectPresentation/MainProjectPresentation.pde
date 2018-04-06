@@ -87,16 +87,16 @@ void setup () {
   Widget busWidget17 = new Widget(950, 550, 350, 40, "Dollarama", widgetColor, widgetFont, EVENT_BUTTON26);
   Widget busWidget18 = new Widget(950, 600, 350, 40, "McDonald's", widgetColor, widgetFont, EVENT_BUTTON27);
   Widget busWidget19 = new Widget(950, 650, 350, 40, "Realstar Management", widgetColor, widgetFont, EVENT_BUTTON28);
-  businessNames = new ArrayList<String>();
+  businessNames = new ArrayList<String>(); 
   userNames = new ArrayList<String>();
-  widgetList = new ArrayList<Widget>();
+  widgetList = new ArrayList<Widget>(); //Array list of widgets used in different screens.
   otherWij = new ArrayList<Widget>();
   bizWidgets = new ArrayList<Widget>();
   homeWij = new ArrayList<Widget>();
   userWijList = new ArrayList<Widget>();
   userEvents = new ArrayList<Integer>();
 
-  otherWij.add(widgetNext); 
+  otherWij.add(widgetNext);           //Add widgets to the correct widget lists
   otherWij.add(widgetPrev);
   widgetList.add(bizWidget);
 
@@ -138,7 +138,7 @@ void setup () {
   userWijList.add(mostRecent);
   userWijList.add(topRated);
 
-  reviewsArray = new ArrayList<Review>();
+  reviewsArray = new ArrayList<Review>();            //Array list of reviews
   linePlotArray = new ArrayList<LinePlot>();
   barChartArray = new ArrayList<BarChart>();
 
@@ -155,7 +155,7 @@ void setup () {
   homeWij.add(mostRecent);
   businessScreen = new Screen(bizWidgets, backgroundTemplate);
 
-  currntscrn = homeScreen;
+  currntscrn = homeScreen;                                  //set the home screen to the current screen
   println("there are " + reviews.length + " lines");
   for (int i = 1; i < reviewTable.getRowCount(); i++) {
     TableRow row=reviewTable.getRow(i);
@@ -173,15 +173,15 @@ void setup () {
     Review newReview = new Review(userID, userName, businessID, businessName, stars, date, review, useful, funny, cool, i2);
     reviewsArray.add(newReview);
   }
-  Review[]mostRecent=findMostRecent();
+  Review[]mostRecent=findMostRecent();                                        //Call most recent
   recentScreen=new RecentScreen(widgetList, backgroundTemplate, mostRecent, reviewNumDisplayed);
-  Review[]topRated=findTopRated();
+  Review[]topRated=findTopRated();                                          //Call top rated
  
   for (int i = 1; i < reviewsArray.size(); i++) {
     Review testReview = (Review) reviewsArray.get(i);
     String name = testReview.getBusinessName();
     if (!businessNames.contains(name) ) {
-      businessNames.add(name);
+      businessNames.add(name);                                            //get the list of business names
     }
   }
   for (int i = 1; i < reviewsArray.size(); i++) {
@@ -189,14 +189,14 @@ void setup () {
     String name = testReview.getUserName();
     if (!userNames.contains(name)) {
       //println(name);
-      userNames.add(name);
+      userNames.add(name);                                                //get the list of user names 
     }
   }
   // username widgets event button arraylist 
   for (int i = 30; i < 105; i++) {
     userEvents.add(i);
   }
-  println("there are " + userEvents.size() + " user event buttons");
+  println("there are " + userEvents.size() + " user event buttons"); //loop to make user widgets 
   for (int i = 0; i < userNames.size(); i++) {
     if (i < 10) {
       Widget wij = new Widget(70, 200 + (50*i), USERNAME_WIJ_WIDTH, USERNAME_WIJ_HEIGHT, userNames.get(i), widgetColor, widgetFont, userEvents.get(i));
@@ -249,7 +249,7 @@ void setup () {
  
 }
 
-void draw() {
+void draw() {                          //draw the screens
   // float leftPos = vs1.getPos();
   //backgroundTemplate.draw();
   //println("Screen : " + screenInt);
@@ -373,7 +373,7 @@ String getRidOfQuotation(String text) {
   return newString;
 }
 
-void mousePressed() {
+void mousePressed() {        //Switch statement for when the mouse is pressed 
   int event;
   if (screenInt == 1|| screenInt == 7 || screenInt == 8 || screenInt == 2 || screenInt == 3 || screenInt == 5||screenInt==6) {
     for ( int i =0; i<widgetList.size(); i++) {
@@ -556,7 +556,7 @@ void mousePressed() {
     }
   }
 }
-void filterByBusinessName(String name) {
+void filterByBusinessName(String name) { //filter business names
   // screenInt = 1;
   screenInt = 7;
   busName = name;
@@ -567,7 +567,7 @@ void filterByBusinessName(String name) {
   businessProfile.setReviewNameFilter(busName);
   currScreen = businessProfile;
 }
-void filterByUserName(String name) {
+void filterByUserName(String name) {      //filter user names
   screenInt = 8;
   userName = name;
   reviewNumDisplayed = 0;
