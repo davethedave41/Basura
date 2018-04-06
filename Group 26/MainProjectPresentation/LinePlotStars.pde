@@ -101,25 +101,6 @@ class LinePlotStars {
 
 }
 
-/*int getMax(int[] statistics) {
-  int max=0;
-  for (int i=0; i<statistics.length; i++) {
-    if (max<statistics[i]) {
-      max=statistics[i];
-    }
-  }
-  return max;
-}
-
-int getMin(int[] statistics) {
-  int min=0;
-  for (int i=0; i<statistics.length; i++) {
-    if (min>statistics[i]) {
-      min=statistics[i];
-    }
-  }
-  return min;
-}*/
 
 void setSteps() {
   int ySetter=maxPoint/yPoints;

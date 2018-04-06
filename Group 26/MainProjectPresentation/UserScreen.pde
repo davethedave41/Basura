@@ -41,32 +41,7 @@ class UserScreen {
         aWidget.setWidgetColor(normal);
       } else aWidget.setWidgetColor(mouseMoved);
     }
-  //  textSize(50);
-   // PFont text = loadFont(
-   // scroll.update();
-   // scroll.display();
-    /*if (revisedReviews.size() == 1) {
-      Review nextReview = revisedReviews.get(0); 
-       if (username.equals("Renee") == false && nextReview.getUserName().equals("Renee") == false && username.equals("Nicholas") == false && nextReview.getUserName().equals("Nicholas") == false) {
-      nextReview.draw(200);
-      }
-    }
-    if (reviewNumDisplayed < revisedReviews.size()) {
-      Review nextReview = revisedReviews.get(reviewNum);
-      if (username.equals("Renee") == false && nextReview.getUserName().equals("Renee") == false && username.equals("Nicholas") == false && nextReview.getUserName().equals("Nicholas") == false) {
-      nextReview.draw(200);
-      }
-    } */
-   // Review nextReview = (Review) revisedReviews.get(reviewNum);
-   // nextReview.draw(200);
-    //  int stars = nextReview.getStars();
-    //  starCounter = new StarCounter(stars, starImage);
-  
-   // Review nextReview = (Review) revisedReviews.get(reviewNum);
-   // nextReview.draw(200);
-      
-    
-    // starCounter.draw(200);
+ 
   }
   void userProfileMousePress() {
     int events;
