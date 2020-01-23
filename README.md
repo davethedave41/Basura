@@ -1,5 +1,5 @@
-# CS1013 Processing
+# CS1013
 
-It's a work in progress 
+First year programming project.
 
 ---
